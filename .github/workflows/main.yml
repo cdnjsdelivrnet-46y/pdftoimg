@@ -1,4 +1,4 @@
-name: BUBT Scraper Runner
+name: pdftoimg runner
 
 on:
   workflow_dispatch:
