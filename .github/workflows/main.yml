@@ -1,9 +1,9 @@
 name: BUBT Scraper Runner
 
 on:
-  workflow_dispatch: # ম্যানুয়ালি রান করার জন্য
+  workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *' # দিনে একবার শুরু হবে
+    - cron: '*/15 * * * *' # প্রতি ১৫ মিনিট অন্তর অটোমেটিক রান হবে
 
 jobs:
   run-scraper:
@@ -22,9 +22,5 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Scraper Loop
-        run: |
-          while true; do
-            python main.py
-            sleep 120 # ১২০ সেকেন্ড বা ২ মিনিট অপেক্ষা করবে
-          done
+      - name: Run Scraper
+        run: python abc.py
