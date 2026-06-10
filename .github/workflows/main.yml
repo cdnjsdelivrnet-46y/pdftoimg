@@ -1,0 +1,30 @@
+name: BUBT Scraper Runner
+
+on:
+  workflow_dispatch: # ম্যানুয়ালি রান করার জন্য
+  schedule:
+    - cron: '0 0 * * *' # দিনে একবার শুরু হবে
+
+jobs:
+  run-scraper:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Scraper Loop
+        run: |
+          while true; do
+            python main.py
+            sleep 120 # ১২০ সেকেন্ড বা ২ মিনিট অপেক্ষা করবে
+          done
